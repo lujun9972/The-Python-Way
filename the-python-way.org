@@ -12,11 +12,12 @@ python的 ~for~ 与C++中的for是不同的,它专指 "for each"
   #+BEGIN_SRC python
     for i in ['a' , 'b' , 'c']:
         print(i)
-
-    # a
-    # b
-    # c
   #+END_SRC
+
+  #+RESULTS:
+  : a
+  : b
+  : c
 
 + 若想同时遍历多个list,使用 ~for~ 与 ~zip~ 组合
   #+BEGIN_SRC python
@@ -27,12 +28,14 @@ python的 ~for~ 与C++中的for是不同的,它专指 "for each"
     for i in zip(l1,l2,l3):
         print(i)
 
-    # ('a', 'A', '甲')
-    # ('b', 'B', '乙')
-    # ('c', 'C', '丙')
-    # ('d', 'D', '丁')
-    # ('e', 'E', '戊')
   #+END_SRC
+
+  #+RESULTS:
+  : ('a', 'A', '甲')
+  : ('b', 'B', '乙')
+  : ('c', 'C', '丙')
+  : ('d', 'D', '丁')
+  : ('e', 'E', '戊')
 
 + 若想便利list中的元素同时还需要元素的索引,使用 ~for~ 与 ~enumerate~
   #+BEGIN_SRC python
@@ -41,11 +44,19 @@ python的 ~for~ 与C++中的for是不同的,它专指 "for each"
     for index,value in enumerate(l1,start=1):
         print(index,value)
 
-    # 1 a
-    # 2 b
-    # 3 c
-    # 4 d
-    # 5 e
   #+END_SRC
 
+  #+RESULTS:
+  : 1 a
+  : 2 b
+  : 3 c
+  : 4 d
+  : 5 e
+
   
+
+
+# Local Variables:
+# org-babel-default-header-args:python: ((:session . "none") (:results . "output") (:exports . "code") (:cache))
+# org-babel-python-command: "python3"
+# End:
