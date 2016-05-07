@@ -53,6 +53,30 @@ python的 ~for~ 与C++中的for是不同的,它专指 "for each"
   : 4 d
   : 5 e
 
+* 连续比较
+这是诸多语言中少有的简便方法
+#+BEGIN_SRC python
+  print(3>2>1>0)
+  print(1<2>0)
+#+END_SRC
+
+#+RESULTS:
+: True
+: True
+
+* 交换变量
+Python支持直接交换变量
+#+BEGIN_SRC python
+  a,b = 1,2
+  print(a,b)
+  a,b = b,a
+  print(a,b)
+#+END_SRC
+
+#+RESULTS:
+: 1 2
+: 2 1
+
   
 
 
