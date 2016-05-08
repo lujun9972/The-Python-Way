@@ -77,6 +77,39 @@ Python支持直接交换变量
 : 1 2
 : 2 1
 
+* 格式化输出
+一般使用string的format方法进行格式化输出
+#+BEGIN_SRC python
+  # {}的内容会被format()中的参赛所替代
+  print('{} is a {}'.format('Cescfangs','gooner'))
+
+  # 可以在{}里填上数字来指定format()中的第几个参赛
+  print('{1} is a {0}'.format('gooner','Cescfangs'))
+
+  # 若{}里填上的是参数名,则会使用format中的同名函数的值
+  print('{Ramsey} is a {gunner}'.format(gunner='gooner',Ramsey='Cescfangs'))
+
+  # 还可以使用:对输出的范围进行控制,我们输出pi的小数点后三位
+  import math
+  print('value of pi is {0:.3f}'.format(math.pi))
+
+  # :还可以起到输出固定位数的作用
+  arsenal = {'Ramsey':16,'Rosciky':7,'Chambers':21,'Ozil':11}
+  for player,number in arsenal.items():
+      print('{0:10}-->{1:3d}'.format(player,number))
+
+#+END_SRC
+
+#+RESULTS:
+: Cescfangs is a gooner
+: Cescfangs is a gooner
+: Cescfangs is a gooner
+: value of pi is 3.142
+: Chambers  --> 21
+: Ozil      --> 11
+: Ramsey    --> 16
+: Rosciky   -->  7
+
   
 
 
