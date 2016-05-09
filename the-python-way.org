@@ -4,7 +4,8 @@
 #+DATE: [2016-05-01 日 10:14]
 #+OPTIONS: ^:{}
 
-* for循环
+* Pythonic Code
+** for循环
 python的 ~for~ 与C++中的for是不同的,它专指 "for each"
 
 + 若只想遍历list中的元素,只需要使用 =for in= 便利即可
@@ -53,7 +54,7 @@ python的 ~for~ 与C++中的for是不同的,它专指 "for each"
   : 4 d
   : 5 e
 
-* 连续比较
+** 连续比较
 这是诸多语言中少有的简便方法
 #+BEGIN_SRC python
   print(3>2>1>0)
@@ -64,7 +65,7 @@ python的 ~for~ 与C++中的for是不同的,它专指 "for each"
 : True
 : True
 
-* 交换变量
+** 交换变量
 Python支持直接交换变量
 #+BEGIN_SRC python
   a,b = 1,2
@@ -77,7 +78,7 @@ Python支持直接交换变量
 : 1 2
 : 2 1
 
-* 格式化输出
+** 格式化输出
 一般使用string的format方法进行格式化输出
 #+BEGIN_SRC python
   # {}的内容会被format()中的参赛所替代
@@ -110,10 +111,60 @@ Python支持直接交换变量
 : Ramsey    --> 16
 : Rosciky   -->  7
 
-  
+** ++i 不等于 i+=1
+Python不支持 =++/--= 操作,因此会将 =++i= 解释成 =+(+i)= ,其中+表示正数符号. 
+#+BEGIN_SRC python
+  i = 1
+  print(+1)
+  print(++1)
+  print(+++1)
+#+END_SRC
 
+#+RESULTS:
+: 1
+: 1
+: 1
 
+对于 =--i= 也是类似 
+
+** 使用with自动关闭资源
+with语句的语法为:
+#+BEGIN_SRC python
+  with expr1 [as e1[,expr2 as e2]]:
+      codes
+#+END_SRC
+
+其中expr应该返回一个上下文对象,这个对象定义了 =__exit__()= 和 =__exit__()= 方法
+
++ __enter__()
+
+  进入运行时的上下文,返回运行时上下文相关的对象,with语句会将这个返回值绑定到目标对象上.
+
++ __exit__(exception_type,exception_value,traceback)
+
+  退出运行时的上下文,定义在code执行之后上下文管理器应该做什么.
+
+为了更好地辅助上下文管理,Python还提供了contextlib模块,该模块中的contentmanager作为装饰器可以提供一种针对函数j级别的上下文管理机制,可以直接作用于函数/对象而不用去关心__enter()__和__exit__()方法的具体实现
+
+* 内部机理
+
+** with语句
+
+包含with语句的代码看的执行过程如下:
+
+1. 计算表达式的值,它会返回一个上下文管理器对象
+2. 加载上下文管理器对象的 =__exit_()= 方法以备后用
+3. 调用上下文管理器对象的 =__enter__()= 方法
+4. 如果with语句中设置了目标对象,则将 =__enter__()= 方法的返回值赋值给目标对象
+5. 执行with中的代码看
+6. 若步骤5中的代码正常结束,调用上下文管理器对象的 =__exit__()= 方法,其返回值被忽略
+7. 若步骤5中的代码执行过程发生异常,调用上下文管理器对象的 =__exit__()= 方法,并将异常类型,值以及traceback信息作为参数传递给 =__exit__()= 方法. 如果 =__exit__()= 返回值为false,则异常会被重新抛出,如果返回值为true,异常被挂起,程序继续执行.
+
+** import语句
+
+* Local Variables Setting:
 # Local Variables:
 # org-babel-default-header-args:python: ((:session . "none") (:results . "output") (:exports . "code") (:cache))
 # org-babel-python-command: "python3"
 # End:
+
