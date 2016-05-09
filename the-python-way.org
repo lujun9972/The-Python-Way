@@ -5,6 +5,10 @@
 #+OPTIONS: ^:{}
 
 * Pythonic Code
+
+** Python代码规范
++ 包和模块的命名采用小谢,单数形式,而且短小
++ 包仅作为命名空间,即只包含空的__init__.py文件
 ** for循环
 python的 ~for~ 与C++中的for是不同的,它专指 "for each"
 
@@ -145,6 +149,18 @@ with语句的语法为:
   退出运行时的上下文,定义在code执行之后上下文管理器应该做什么.
 
 为了更好地辅助上下文管理,Python还提供了contextlib模块,该模块中的contentmanager作为装饰器可以提供一种针对函数j级别的上下文管理机制,可以直接作用于函数/对象而不用去关心__enter()__和__exit__()方法的具体实现
+
+** 三元操作符"?:"
+
+Python本身不支持三元操作符 =?:= . =C?X:Y= 在Python中等价形式为 =X if C else Y=
+#+BEGIN_SRC python
+  X = 0
+  Y = -2
+  print(X if X<Y else Y)
+#+END_SRC
+
+#+RESULTS:
+: -2
 
 * 内部机理
 
