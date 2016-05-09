@@ -162,6 +162,24 @@ Python本身不支持三元操作符 =?:= . =C?X:Y= 在Python中等价形式为 
 #+RESULTS:
 : -2
 
+** switch..case
+Python中没有C语言那样的 =switch..case= 分支语句. 一般使用 =if..elif..else= 语句代替,会使用跳转表来实现:
+#+BEGIN_SRC python
+  def f(x):
+      return {
+          0: "You typed zero.",
+          1: "You typed one.",
+          2: "You typed two."
+      }.get(x,"You Typed Other Number")
+
+  print(f(1))
+  print(f(3))
+#+END_SRC
+
+#+RESULTS:
+: You typed one.
+: You Typed Other Number
+
 * 内部机理
 
 ** with语句
